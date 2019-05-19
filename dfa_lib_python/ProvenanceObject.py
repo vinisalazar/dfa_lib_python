@@ -22,8 +22,8 @@ class ProvenanceObject(object):
                 continue
             name = key.split(prefix)[1]
             value = self.__dict__[key]
-            if(value is not None):
-                if(len(value) > 0):
+            if value is not None:
+                if len(value) > 0:
                     json[name] = value
                     if isinstance(value, str):
                         json[name] = value

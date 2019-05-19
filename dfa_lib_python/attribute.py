@@ -23,8 +23,7 @@ class Attribute(ProvenanceObject):
 
     @name.setter
     def name(self, name):
-        assert isinstance(name, str), \
-            "The name must be a string."
+        assert isinstance(name, str), "The name must be a string."
         self._name = name
 
     @property
@@ -34,8 +33,9 @@ class Attribute(ProvenanceObject):
 
     @type.setter
     def type(self, type):
-        assert isinstance(type, AttributeType), \
-            "The type must be an instance of AttributeType."
+        assert isinstance(
+            type, AttributeType
+        ), "The type must be an instance of AttributeType."
         self._type = type.value
 
     def __repr__(self):

@@ -1,4 +1,4 @@
-from .ProvenanceObject import ProvenanceObject
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
 
 
 class Program(ProvenanceObject):
@@ -24,8 +24,7 @@ class Program(ProvenanceObject):
 
     @name.setter
     def name(self, name):
-        assert isinstance(name, str), \
-            "The name must be a string instance."
+        assert isinstance(name, str), "The name must be a string instance."
         self._name = name
 
     @property
@@ -35,8 +34,7 @@ class Program(ProvenanceObject):
 
     @path.setter
     def path(self, path):
-        assert isinstance(path, str), \
-            "The path must be a string instance."
+        assert isinstance(path, str), "The path must be a string instance."
         self._path = path
 
     @property
@@ -46,8 +44,9 @@ class Program(ProvenanceObject):
 
     @transformationTag.setter
     def transformationTag(self, transformation_tag):
-        assert isinstance(transformation_tag, str), \
-            "The transformationTag must be a string."
+        assert isinstance(
+            transformation_tag, str
+        ), "The transformationTag must be a string."
         self._transformationTag = transformation_tag
 
     @property
@@ -57,6 +56,5 @@ class Program(ProvenanceObject):
 
     @dataflowTag.setter
     def dataflowTag(self, dataflow_tag):
-        assert isinstance(dataflow_tag, str), \
-            "The dataflowTag must be a string."
+        assert isinstance(dataflow_tag, str), "The dataflowTag must be a string."
         self._dataflowTag = dataflow_tag

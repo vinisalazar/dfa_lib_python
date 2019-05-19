@@ -1,5 +1,5 @@
-from .ProvenanceObject import ProvenanceObject
-from .method_type import MethodType
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
+from dfa_lib_python.method_type import MethodType
 
 
 class Performance(ProvenanceObject):
@@ -12,6 +12,7 @@ class Performance(ProvenanceObject):
         - method (:obj:`MethodType`, optional): method use to measure
         - description (:obj:`str`, optional): description of the performance measure
     """
+
     def __init__(self, start_time, end_time, method="", description=""):
         ProvenanceObject.__init__(self, "")
         self._startTime = start_time
@@ -26,8 +27,7 @@ class Performance(ProvenanceObject):
 
     @startTime.setter
     def startTime(self, start_time):
-        assert isinstance(start_time, str), \
-            "The start time must be a string."
+        assert isinstance(start_time, str), "The start time must be a string."
         self._startTime = start_time
 
     @property
@@ -37,8 +37,7 @@ class Performance(ProvenanceObject):
 
     @endTime.setter
     def endTime(self, end_time):
-        assert isinstance(end_time, str), \
-            "The end time must be a string."
+        assert isinstance(end_time, str), "The end time must be a string."
         self._endTime = end_time
 
     @property
@@ -48,8 +47,9 @@ class Performance(ProvenanceObject):
 
     @method.setter
     def method(self, method):
-        assert isinstance(method, MethodType), \
-            "The performance method must be a MethodType object."
+        assert isinstance(
+            method, MethodType
+        ), "The performance method must be a MethodType object."
         self._method = method.value
 
     @property
@@ -59,6 +59,7 @@ class Performance(ProvenanceObject):
 
     @description.setter
     def description(self, description):
-        assert isinstance(description, str), \
-            "The performance description must be a string."
+        assert isinstance(
+            description, str
+        ), "The performance description must be a string."
         self._description = description

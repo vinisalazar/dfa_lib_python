@@ -1,13 +1,13 @@
 import requests
 import os
-from .ProvenanceObject import ProvenanceObject
-from .dependency import Dependency
-from .task_status import TaskStatus
-from .dataset import DataSet
-from .performance import Performance
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
+from dfa_lib_python.dependency import Dependency
+from dfa_lib_python.task_status import TaskStatus
+from dfa_lib_python.dataset import DataSet
+from dfa_lib_python.performance import Performance
 from datetime import datetime
 
-dfa_url = os.environ.get('DFA_URL',"http://localhost:22000/")
+dfa_url = os.environ.get("DFA_URL", "http://localhost:22000/")
 
 
 class Task(ProvenanceObject):
@@ -25,9 +25,19 @@ class Task(ProvenanceObject):
         - output (:obj:`str`, optional): Task output.
         - error (:obj:`str`, optional): Task error.
     """
-    def __init__(self, id, dataflow_tag, transformation_tag,
-                 sub_id="", dependency=None, workspace="", resource="",
-                 output="", error=""):
+
+    def __init__(
+        self,
+        id,
+        dataflow_tag,
+        transformation_tag,
+        sub_id="",
+        dependency=None,
+        workspace="",
+        resource="",
+        output="",
+        error="",
+    ):
         ProvenanceObject.__init__(self, transformation_tag)
         self._workspace = workspace
         self._resource = resource
@@ -55,8 +65,7 @@ class Task(ProvenanceObject):
             - dependency (:obj:`Dependency`): A :obj:`Dependency` object.
         """
 
-        assert isinstance(dependency, Dependency), \
-            "The dependency must be valid."
+        assert isinstance(dependency, Dependency), "The dependency must be valid."
         self._dependency = dependency.get_specification()
 
     def set_datasets(self, datasets):
@@ -65,8 +74,7 @@ class Task(ProvenanceObject):
         Args:
             - dataset (:obj:`list`): A :obj:`list` containing :obj:`DataSet` objects.
         """
-        assert isinstance(datasets, list), \
-            "The parameter must be a list."
+        assert isinstance(datasets, list), "The parameter must be a list."
         for dataset in datasets:
             self.add_dataset(dataset)
 
@@ -85,22 +93,21 @@ class Task(ProvenanceObject):
         Args:
             - status (:obj:`TaskStatus`): A :obj:`TaskStatus` object.
         """
-        assert isinstance(status, TaskStatus), \
-            "The task status must be valid."
+        assert isinstance(status, TaskStatus), "The task status must be valid."
         self._status = status.value
 
     def begin(self):
         """ Send a post request to the Dataflow Analyzer API to store the Task.
-        """        
+        """
         self.set_status(TaskStatus.RUNNING)
-        self.start_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.save()
 
     def end(self):
         """ Send a post request to the Dataflow Analyzer API to store the Task.
         """
         self.set_status(TaskStatus.FINISHED)
-        self.end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.end_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         performance = Performance(self.start_time, self.end_time)
         self._performances.append(performance.get_specification())
         self.save()
@@ -108,7 +115,7 @@ class Task(ProvenanceObject):
     def save(self):
         """ Send a post request to the Dataflow Analyzer API to store the Task.
         """
-        url = dfa_url + '/pde/task/json'
+        url = dfa_url + "/pde/task/json"
         message = self.get_specification()
         r = requests.post(url, json=message)
         print(r.status_code)

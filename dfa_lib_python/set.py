@@ -1,7 +1,7 @@
-from .ProvenanceObject import ProvenanceObject
-from .attribute import Attribute
-from .extractor import Extractor
-from .set_type import SetType
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
+from dfa_lib_python.attribute import Attribute
+from dfa_lib_python.extractor import Extractor
+from dfa_lib_python.set_type import SetType
 
 
 class Set(ProvenanceObject):
@@ -15,6 +15,7 @@ class Set(ProvenanceObject):
         - extractors (:obj:`list`): Set extractors.
         - dependency (:obj:`str`, optional): Set dependency.
     """
+
     def __init__(self, tag, type, attributes, extractors=[], dependency=""):
         ProvenanceObject.__init__(self, tag)
         self.attributes = attributes
@@ -29,8 +30,7 @@ class Set(ProvenanceObject):
 
     @type.setter
     def type(self, value):
-        assert isinstance(value, SetType), \
-            "The type must be valid."
+        assert isinstance(value, SetType), "The type must be valid."
         self._type = value.value
 
     def set_type(self, type):
@@ -44,12 +44,10 @@ class Set(ProvenanceObject):
 
     @attributes.setter
     def attributes(self, attributes):
-        assert isinstance(attributes, list), \
-            "The attributes must be in a list."
+        assert isinstance(attributes, list), "The attributes must be in a list."
         result = []
         for attribute in attributes:
-            assert isinstance(attribute, Attribute), \
-                "The attribute must be valid."
+            assert isinstance(attribute, Attribute), "The attribute must be valid."
             result.append(attribute.get_specification())
         self._attributes = result
 
@@ -59,8 +57,7 @@ class Set(ProvenanceObject):
         Args:
             - attribute (:obj:`Attribute`): An object of the Attribute class.
         """
-        assert isinstance(attribute, Attribute), \
-            "The attribute must be valid."
+        assert isinstance(attribute, Attribute), "The attribute must be valid."
         self.attributes.append(attribute.get_specification())
 
     @property
@@ -70,12 +67,10 @@ class Set(ProvenanceObject):
 
     @extractors.setter
     def extractors(self, extractors):
-        assert isinstance(extractors, list), \
-            "The extractors must be in a list."
+        assert isinstance(extractors, list), "The extractors must be in a list."
         result = []
         for extractor in extractors:
-            assert isinstance(extractor, Extractor), \
-                "The extractor must be valid."
+            assert isinstance(extractor, Extractor), "The extractor must be valid."
             result.append(extractor.get_specification())
         self._extractors = result
 
@@ -85,8 +80,7 @@ class Set(ProvenanceObject):
         Args:
             - extractor (:obj:`Extractor`): An object of the Extractor class.
         """
-        assert isinstance(extractor, Extractor), \
-            "The extractor must be valid."
+        assert isinstance(extractor, Extractor), "The extractor must be valid."
         self.extractor.append(extractor.get_specification())
 
     @property
@@ -96,6 +90,5 @@ class Set(ProvenanceObject):
 
     @dependency.setter
     def dependency(self, dependency):
-        assert isinstance(dependency, str), \
-            "The dependency must be a string."
+        assert isinstance(dependency, str), "The dependency must be a string."
         self._dependency = dependency
