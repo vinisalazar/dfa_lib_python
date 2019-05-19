@@ -1,11 +1,11 @@
-from .ProvenanceObject import ProvenanceObject
-from .attribute_type import AttributeType
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
+from dfa_lib_python.attribute_type import AttributeType
 
 
 class Attribute(ProvenanceObject):
     """
     This class defines a dataflow attribute.
-    
+
     Attributes:
         - name (str): Attribute name.
         - type (:obj:`AttributeType`): Attribute Type.
@@ -23,7 +23,8 @@ class Attribute(ProvenanceObject):
 
     @name.setter
     def name(self, name):
-        assert isinstance(name, str), "The name must be a string."
+        assert isinstance(name, str), \
+            "The name must be a string."
         self._name = name
 
     @property
@@ -33,9 +34,8 @@ class Attribute(ProvenanceObject):
 
     @type.setter
     def type(self, type):
-        assert isinstance(
-            type, AttributeType
-        ), "The type must be an instance of AttributeType."
+        assert isinstance(type, AttributeType), \
+            "The type must be an instance of AttributeType."
         self._type = type.value
 
     def __repr__(self):
