@@ -1,6 +1,6 @@
 import os
 import subprocess
-from .extractor_cartridge import ExtractorCartridge
+from dfa_lib_python.extractor_cartridge import ExtractorCartridge
 
 
 class RawDataIndexer(object):
@@ -15,13 +15,20 @@ class RawDataIndexer(object):
         - attributes (:obj:`list`): A :obj:`list` containing :obj:`Attribute`.
         - extra_arguments (:obj:`str`, optional): A set of extra arguments.
     """
-    def __init__(self, cartridge, extractor_tag, path,
-                 file_name_with_extracted_data,
-                 attributes, extra_arguments=""):
-        assert isinstance(cartridge, ExtractorCartridge), \
-            "The extractor cartridge type must be a valid."
-        assert isinstance(attributes, list), \
-            "The attributes type must be a list."
+
+    def __init__(
+        self,
+        cartridge,
+        extractor_tag,
+        path,
+        file_name_with_extracted_data,
+        attributes,
+        extra_arguments="",
+    ):
+        assert isinstance(
+            cartridge, ExtractorCartridge
+        ), "The extractor cartridge type must be a valid."
+        assert isinstance(attributes, list), "The attributes type must be a list."
         self._cartridge = cartridge.value
         self._method = "INDEX"
         self._attributes = attributes
@@ -38,7 +45,7 @@ class RawDataIndexer(object):
 
     def get_command_line(self):
         """Return the commandline to execute RDI."""
-        dfanalyzer_dir = os.environ.get('DFANALYZER_DIR')
+        dfanalyzer_dir = os.environ.get("DFANALYZER_DIR")
         cartridge = self._cartridge
         method = self._method
         tag = self._tag
@@ -48,14 +55,16 @@ class RawDataIndexer(object):
         extra_arguments = self._extra_arguments
         print(extra_arguments)
         return "{0}/bin/RDE {1}:{2} {3} {4} \
-        {5} {6} {7}".format(dfanalyzer_dir,
-                            cartridge,
-                            method,
-                            tag,
-                            path,
-                            file_name_with_extracted_data,
-                            attributes,
-                            extra_arguments)
+        {5} {6} {7}".format(
+            dfanalyzer_dir,
+            cartridge,
+            method,
+            tag,
+            path,
+            file_name_with_extracted_data,
+            attributes,
+            extra_arguments,
+        )
 
     def run(self):
         """Execute the RDI."""

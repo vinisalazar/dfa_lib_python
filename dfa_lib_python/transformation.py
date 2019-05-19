@@ -1,6 +1,6 @@
-from .ProvenanceObject import ProvenanceObject
-from .set import Set
-from .set_type import SetType
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
+from dfa_lib_python.set import Set
+from dfa_lib_python.set_type import SetType
 
 
 class Transformation(ProvenanceObject):
@@ -11,6 +11,7 @@ class Transformation(ProvenanceObject):
         - tag (:obj:`str`): Transformation tag.
         - sets (:obj:`list`, optional): Transformation sets.
     """
+
     def __init__(self, tag, sets=[]):
         ProvenanceObject.__init__(self, tag.lower())
         self.sets = sets
@@ -22,12 +23,10 @@ class Transformation(ProvenanceObject):
 
     @sets.setter
     def sets(self, sets):
-        assert isinstance(sets, list), \
-            "The Sets must be in a list."
+        assert isinstance(sets, list), "The Sets must be in a list."
         result = []
         for set in sets:
-            assert isinstance(set, Set), \
-                "The Set must be valid."
+            assert isinstance(set, Set), "The Set must be valid."
             result.append(set.get_specification())
         self._sets = result
 
@@ -39,14 +38,11 @@ class Transformation(ProvenanceObject):
 
     @input.setter
     def input(self, sets):
-        assert isinstance(sets, list), \
-            "The input Sets must be in a list."
+        assert isinstance(sets, list), "The input Sets must be in a list."
         input_sets = []
         for set in sets:
-            assert isinstance(set, Set), \
-                "The Set must be valid."
-            assert set.type == SetType.INPUT.value,\
-                "The Set type must be INPUT."
+            assert isinstance(set, Set), "The Set must be valid."
+            assert set.type == SetType.INPUT.value, "The Set type must be INPUT."
             input_sets.append(set.get_specification())
         self._sets = [x for x in self.output] + input_sets
 
@@ -58,14 +54,11 @@ class Transformation(ProvenanceObject):
 
     @output.setter
     def output(self, sets):
-        assert isinstance(sets, list), \
-            "The input Sets must be in a list."
+        assert isinstance(sets, list), "The input Sets must be in a list."
         output_sets = []
         for set in sets:
-            assert isinstance(set, Set), \
-                "The Set must be valid."
-            assert set.type == SetType.OUTPUT.value,\
-                "The Set type must be OUTPUT."
+            assert isinstance(set, Set), "The Set must be valid."
+            assert set.type == SetType.OUTPUT.value, "The Set type must be OUTPUT."
             output_sets.append(set.get_specification())
         self._sets = [x for x in self.input] + output_sets
 
@@ -75,8 +68,7 @@ class Transformation(ProvenanceObject):
         Args:
             - sets (:obj:`list`): An list containing :obj:`Set` objects.
         """
-        assert isinstance(sets, list), \
-            "The parameter must be a list."
+        assert isinstance(sets, list), "The parameter must be a list."
         for set in sets:
             self.add_set(set)
 
@@ -86,6 +78,5 @@ class Transformation(ProvenanceObject):
         Args:
             - set (:obj:`Set`): A :obj:`Set` object..
         """
-        assert isinstance(set, Set), \
-            "The set must be valid."
+        assert isinstance(set, Set), "The set must be valid."
         self._sets.append(set.get_specification())

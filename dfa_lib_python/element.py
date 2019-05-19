@@ -16,6 +16,5 @@ class Element(object):
 
     @values.setter
     def values(self, values):
-        assert isinstance(values, list), \
-            "The values must be in a list."
+        assert isinstance(values, list), "The values must be in a list."
         self._values = [str(x) for x in values]

@@ -1,4 +1,4 @@
-from .ProvenanceObject import ProvenanceObject
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
 
 
 class File(ProvenanceObject):

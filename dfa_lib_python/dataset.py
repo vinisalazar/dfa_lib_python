@@ -1,11 +1,11 @@
-from .ProvenanceObject import ProvenanceObject
-from .element import Element
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
+from dfa_lib_python.element import Element
 
 
 class DataSet(ProvenanceObject):
     """
     This class defines a dataflow dataset.
-    
+
     Attributes:
         - tag (str): Dataset tag.
         - elements (:obj:`Element`): Dataset Elements
@@ -22,8 +22,7 @@ class DataSet(ProvenanceObject):
 
     @elements.setter
     def elements(self, elements):
-        assert isinstance(elements, list), \
-            "The elements must be in a list."
+        assert isinstance(elements, list), "The elements must be in a list."
         result = []
         for element in elements:
             assert isinstance(element, Element), "The element must be valid."

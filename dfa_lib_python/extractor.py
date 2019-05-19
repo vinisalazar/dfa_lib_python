@@ -1,6 +1,6 @@
-from .ProvenanceObject import ProvenanceObject
-from .extractor_cartridge import ExtractorCartridge
-from .extractor_extension import ExtractorExtension
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
+from dfa_lib_python.extractor_cartridge import ExtractorCartridge
+from dfa_lib_python.extractor_extension import ExtractorExtension
 
 
 class Extractor(ProvenanceObject):
@@ -28,8 +28,9 @@ class Extractor(ProvenanceObject):
 
     @cartridge.setter
     def cartridge(self, cartridge):
-        assert isinstance(cartridge, ExtractorCartridge), \
-            "The parameter must be a extractor cartridge."
+        assert isinstance(
+            cartridge, ExtractorCartridge
+        ), "The parameter must be a extractor cartridge."
         self._cartridge = cartridge.value
 
     @property
@@ -39,8 +40,9 @@ class Extractor(ProvenanceObject):
 
     @extension.setter
     def extension(self, extension):
-        assert isinstance(extension, ExtractorExtension), \
-            "The parameter must be a extractor extension."
+        assert isinstance(
+            extension, ExtractorExtension
+        ), "The parameter must be a extractor extension."
         self._extension = extension.value
 
     @property
@@ -50,8 +52,7 @@ class Extractor(ProvenanceObject):
 
     @setTag.setter
     def setTag(self, set_tag):
-        assert isinstance(set_tag, str), \
-            "The setTag must be a string."
+        assert isinstance(set_tag, str), "The setTag must be a string."
         self._setTag = set_tag
 
     @property
@@ -61,8 +62,9 @@ class Extractor(ProvenanceObject):
 
     @transformationTag.setter
     def transformationTag(self, transformation_tag):
-        assert isinstance(transformation_tag, str), \
-            "The transformationTag must be a string."
+        assert isinstance(
+            transformation_tag, str
+        ), "The transformationTag must be a string."
         self._transformationTag = transformation_tag
 
     @property
@@ -72,8 +74,7 @@ class Extractor(ProvenanceObject):
 
     @dataflowTag.setter
     def dataflowTag(self, dataflow_tag):
-        assert isinstance(dataflow_tag, str), \
-            "The dataflowTag must be a string."
+        assert isinstance(dataflow_tag, str), "The dataflowTag must be a string."
         self._dataflowTag = dataflow_tag
 
     def add_cartridge(self, cartridge):

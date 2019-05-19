@@ -1,10 +1,10 @@
-from .ProvenanceObject import ProvenanceObject
+from dfa_lib_python.ProvenanceObject import ProvenanceObject
 
 
 class Dependency(ProvenanceObject):
     """
     This class represents a dependency of a task.
-    
+
     Attributes:
         - tags (list): Tags of the dependent tasks.
         - ids (list): Ids of the dependent tasks.
@@ -22,8 +22,7 @@ class Dependency(ProvenanceObject):
 
     @tags.setter
     def tags(self, tags):
-        assert isinstance(tags, list), \
-            "The tags must be in a list."
+        assert isinstance(tags, list), "The tags must be in a list."
         result = []
         for tag in tags:
             result.append({"tag": tag})
@@ -36,8 +35,7 @@ class Dependency(ProvenanceObject):
 
     @ids.setter
     def ids(self, ids):
-        assert isinstance(ids, list), \
-            "The ids must be in a list."
+        assert isinstance(ids, list), "The ids must be in a list."
         result = []
         for id in ids:
             result.append({"id": id})
