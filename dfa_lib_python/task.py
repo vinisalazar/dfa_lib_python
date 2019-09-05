@@ -5,6 +5,7 @@ from dfa_lib_python.dependency import Dependency
 from dfa_lib_python.task_status import TaskStatus
 from dfa_lib_python.dataset import DataSet
 from dfa_lib_python.performance import Performance
+from dfa_lib_python.element import Element
 from datetime import datetime
 
 dfa_url = os.environ.get("DFA_URL", "http://localhost:22000/")
@@ -119,3 +120,34 @@ class Task(ProvenanceObject):
         message = self.get_specification()
         r = requests.post(url, json=message)
         print(r.status_code)
+
+
+# Start task function
+def start_task(task_id, dataflow_tag, label, in_elements):
+    """
+    :param task_id: Integer for each task (0, 1 ... n). Usually use with enumerate
+    :param label: Same as corresponding Transformation labels
+    :param elements: List of inputs
+    :return: t, t_input, t_output
+    """
+    in_elements = [Element([i]) for i in in_elements]
+    t = Task(task_id, dataflow_tag, label)
+    t_input = DataSet(f"i{label}", in_elements)
+    t.add_dataset(t_input)
+    t.begin()
+
+    return t, t_input
+
+
+# End task function
+def end_task(task, label, out_elements):
+    """
+    :param label: Same as Transformation
+    :param out_elements: List of outputs
+    :return:
+    """
+    t_output = DataSet(f"o{label}", [Element([i]) for i in out_elements])
+    task.add_dataset(t_output)
+    task.end()
+
+    return t_output

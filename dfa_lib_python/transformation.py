@@ -80,3 +80,26 @@ class Transformation(ProvenanceObject):
         """
         assert isinstance(set, Set), "The set must be valid."
         self._sets.append(set.get_specification())
+
+
+# Add transformation function
+def tf(df, label, input_attr, output_attr, prev_out=None):
+    """
+    :param df: Dataflow tag
+    :param label: Label for transformation
+    :param input_attr: list of Attribute(label, type)
+    :param output_attr: list of Attribute(label, type)
+    :param prev_out: tf_output object of previous step:
+    :return: tf, tf_input, tf_output
+    """
+    tf = Transformation(label)
+    tf_input = Set(f"i{label}", SetType.INPUT, input_attr)
+    tf_output = Set(f"o{label}", SetType.OUTPUT, output_attr)
+
+    if prev_out:
+        tf.set_sets([prev_out, tf_input, tf_output])
+    else:
+        tf.set_sets([tf_input, tf_output])
+    df.add_transformation(tf)
+
+    return tf, tf_input, tf_output
