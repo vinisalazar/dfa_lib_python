@@ -83,7 +83,7 @@ class Transformation(ProvenanceObject):
 
 
 # Add transformation function
-def tf(df, label, input_attr, output_attr, prev_out=None):
+def add_transformation(df, label, input_attr, output_attr, prev_out=None):
     """
     :param df: Dataflow tag
     :param label: Label for transformation

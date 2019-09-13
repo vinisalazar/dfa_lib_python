@@ -20,4 +20,4 @@ from dfa_lib_python.set import Set
 from dfa_lib_python.set_type import SetType
 from dfa_lib_python.task import Task, start_task, end_task
 from dfa_lib_python.task_status import TaskStatus
-from dfa_lib_python.transformation import Transformation, tf
+from dfa_lib_python.transformation import Transformation, add_transformation
