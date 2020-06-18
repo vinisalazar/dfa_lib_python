@@ -23,7 +23,7 @@ setup(
     description='A Python library for Dataflow Analyzer that can be installed with pip.',
     long_description=long_description,
     url='https://github.com/vinisalazar/dfa_lib_python',
-    download_url='https://github.com/vinisalazar/dfa_lib_python/tag/' + __version__,
+    download_url= 'https://github.com/vinisalazar/dfa_lib_python/archive/{}.tar.gz'.format( __version__),
     license='BSD',
     classifiers=[
       'Development Status :: 3 - Alpha',
