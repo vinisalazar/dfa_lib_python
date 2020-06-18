@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
-__version__ = '1.0.1'
+__version__ = 'v1.0.1'
 
 here = path.abspath(path.dirname(__file__))
 
@@ -22,8 +22,8 @@ setup(
     version=__version__,
     description='A Python library for Dataflow Analyzer that can be installed with pip.',
     long_description=long_description,
-    url='https://gitlab.com/viniciusscampos/dfa-lib-python',
-    download_url='https://gitlab.com/viniciusscampos/dfa-lib-python/tarball/' + __version__,
+    url='https://github.com/vinisalazar/dfa_lib_python',
+    download_url='https://github.com/vinisalazar/dfa_lib_python/tag/' + __version__,
     license='BSD',
     classifiers=[
       'Development Status :: 3 - Alpha',
